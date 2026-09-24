@@ -9,6 +9,7 @@ Snip is a tiny URL shortener with one backend and two clients: an Angular web ap
 | `backend/` | `backend` | Bun API server with in-memory link storage |
 | `frontend/` | `frontend` | Angular 19 standalone web client |
 | `cli/` | `cli` | Zero-dependency Node CLI client |
+| `bundle/` | `bundle` | Generated release with the server, UI, and CLI |
 
 The submodule pointers make each `main` checkout a reproducible combination of the three layer commits.
 
@@ -42,6 +43,17 @@ cd cli && node cli.js ls
 ```
 
 The API runs at `http://localhost:3000`, the Angular app at `http://localhost:4200`, and the CLI uses `SNIP_API` when set.
+
+## Generated bundle
+
+Regenerate the release submodule from the three source branches with Node:
+
+```bash
+node scripts/build-bundle.mjs
+node scripts/build-bundle.mjs --push
+```
+
+The script builds the Angular UI, assembles the Bun server and CLI into `bundle/`, and is idempotent. It creates local commits only when generated content or the bundle pointer changes; `--push` publishes the bundle branch and the `main` pointer. The generated bundle serves the UI and API together on port `3000` and is ready for Docker or Railway.
 
 ## Update workflow
 
