@@ -1,0 +1,19 @@
+* {
+	box-sizing: border-box;
+}
+
+html {
+	min-width: 320px;
+	background: #f1f3ed;
+}
+
+body {
+	margin: 0;
+	color: #173b3c;
+	font-family: 'Trebuchet MS', sans-serif;
+	background: radial-gradient(circle at 80% 0%, #fff4df 0, #f1f3ed 42rem);
+}
+
+a {
+	text-decoration: none;
+}
